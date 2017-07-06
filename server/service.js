@@ -34,7 +34,7 @@ request.post(process.env.SERVICE_NOW_URL)
 			
 			temp = ress.body.result.number;
 			console.log("RR " +temp);
-			res.json({result: `Incident created: ${temp}`});	
+			res.json({result: `Incident created: ${temp} https://dev19318.service-now.com/nav_to.do?uri=%2Fincident.do%3Fsys_id%3D${ress.body.result.sys_id}`});	
 		}
     });
 
