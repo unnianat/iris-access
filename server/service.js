@@ -7,10 +7,11 @@ const request = require('superagent');
 require('dotenv').config({path: '../.env'});
 
 service.get('/service/:application', (req, res, next) => {
+	var temp = "hello";
 	if( req.params.application == 'Reach' )    
 	{
-		res.json({result: `Unnikrishnan Kavungal Anat`});
-
+		//res.json({result: `Unnikrishnan Kavungal Anat`});
+		
 
 var auth = new Buffer( process.env.SERVICE_NOW_USER + ':' + process.env.SERVICE_NOW_PASSWORD).toString('base64'); //create --user user:password to add to header
 
@@ -22,24 +23,24 @@ request.post(process.env.SERVICE_NOW_URL)
 		   '\'assignment_group\':\'287ebd7da9fe198100f92cc8d1d2154e\',' +
 		   '\'urgency\':\'2\',' +
 		   '\'impact\':\'2\'}')
-    .end(function(err, res){
+    .end(function(err, ress){
 		if(err) {
             console.log(err);
-            return res.sendStatus(500);
-        }else{
-			console.log("Success");
+
+            return ress.sendStatus(500);
 			
+        }else{
+			console.log(ress.body.result);
+			
+			temp = ress.body.result.number;
+			console.log("RR " +temp);
+			res.json({result: `Incident created: ${temp}`});	
 		}
     });
 
-
-
-
+	
 	}
-	else
-	{
-	  	res.json({result: `Ryan Ramos`});
-	}
+	
 
 
 });
