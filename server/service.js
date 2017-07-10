@@ -6,8 +6,10 @@ const request = require('superagent');
 
 require('dotenv').config({path: '../.env'});
 
-service.get('/service/:application', (req, res, next) => {
+service.get('/service/:application/:text', (req, res, next) => {
 	var temp = "hello";
+	console.log('Hello world');
+	console.log(req);
 	if( req.params.application == 'Reach' )    
 	{
 		//res.json({result: `Unnikrishnan Kavungal Anat`});
@@ -34,7 +36,9 @@ request.post(process.env.SERVICE_NOW_URL)
 			
 			temp = ress.body.result.number;
 			console.log("RR " +temp);
-			res.json({result: `Incident created: ${temp} https://dev19318.service-now.com/nav_to.do?uri=%2Fincident.do%3Fsys_id%3D${ress.body.result.sys_id}`});	
+			//res.json({result: `Incident created: ${temp} https://dev19318.service-now.com/nav_to.do?uri=%2Fincident.do%3Fsys_id%3D${ress.body.result.sys_id}`});	
+
+			res.json({result:`I have created a service now ticket for you. ticket nimber is ${temp}. you will get notified once its resolved or you can check back with me for the status`});
 		}
     });
 

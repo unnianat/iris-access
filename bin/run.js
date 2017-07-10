@@ -15,7 +15,7 @@ server.on('listening', function() {
         request.put(`http://` + process.env.SERVER_HOST + `:` + process.env.SERVER_PORT + `/service/access/${server.address().port}`, (err, res) => {
             if(err) {
                 console.log(err);
-                console.log("Error connecting to Iris"); 
+                console.log("Error connecting to Iris Access"); 
             }
         });
     };
